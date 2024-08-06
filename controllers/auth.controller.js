@@ -4,14 +4,13 @@ import generateToken from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
   try {
-    
     const { fullName, username, gender, password, confirmPassword } = req.body;
     if (password !== confirmPassword) {
       return res.status(400).json({ error: " Password is not matched" });
     }
 
     const user = await User.findOne({ username });
- 
+
     if (user) {
       return res.status(400).json({ error: " User Already Exists" });
     }
@@ -61,13 +60,13 @@ export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    const validation =await bcrypt.compare(password, user?.password || "");
+    const validation = await bcrypt.compare(password, user?.password || "");
 
     if (!user || !validation) {
-      return res.status(400).json({ error: "Invalid Username or Password"});
+      return res.status(400).json({ error: "Invalid Username or Password" });
     }
 
-    generateToken(user._id,res);
+    generateToken(user._id, res);
 
     res.status(200).json({
       _id: user._id,
@@ -75,7 +74,6 @@ export const login = async (req, res) => {
       username: user.username,
       profilePic: user.profilePic,
     });
-
   } catch (error) {
     console.log("Error in Login Controller", error.message);
     return res.status(500).json({ error: "Internal Server error" });
@@ -84,8 +82,8 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.cookie("jwt","",{maxAge:0});
-    res.status(200).json({message: "logged out successfully"});
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "logged out successfully" });
   } catch (error) {
     console.log("Error in logout Controller", error.message);
     return res.status(500).json({ error: "Internal Server error" });

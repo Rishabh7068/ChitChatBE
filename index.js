@@ -7,9 +7,15 @@ import connectToMonhoDB from "./db/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./sokect/socket.js";
 import path from "path";
-import cors from "cors";
+// import cors from "cors";
 
 
+const corsOptions = {
+  origin: 'https://chitchatbe-a6aq.onrender.com',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
 
 
 
@@ -21,11 +27,7 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
-app.use(cors({
-  origin: 'https://chitchatbe-a6aq.onrender.com',
-  credentials: true
-}));
+app.use(cors(corsOptions));
 
 
 app.use("/api/auth", authRoutes);

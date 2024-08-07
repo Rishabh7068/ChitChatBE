@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "proxy": "https://chitchatbe-a6aq.onrender.com"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
   "author": "",

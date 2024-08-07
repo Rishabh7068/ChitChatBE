@@ -7,7 +7,7 @@ import connectToMonhoDB from "./db/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./sokect/socket.js";
 import path from "path";
-// import cors from "cors";
+import cors from "cors";
 
 
 
@@ -21,7 +21,7 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors());
+app.use(cors());
 // app.use(cors({
 //   origin: 'http://localhost:3000',
 //   credentials: true

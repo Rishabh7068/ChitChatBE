@@ -7,7 +7,7 @@ import connectToMonhoDB from "./db/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./sokect/socket.js";
 import path from "path";
-// import cors from "cors";
+import cors from "cors";
 
 
 const corsOptions = {

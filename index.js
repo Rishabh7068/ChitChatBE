@@ -20,9 +20,9 @@ const PORT = process.env.PORT || 8000;
 const __dirname = path.resolve();
 
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 const corsOptions = {
-  origin: 'https://chit-chat-fe-mu.vercel.app/', // your frontend domain
   credentials: true, // allow credentials (cookies)
 };
 

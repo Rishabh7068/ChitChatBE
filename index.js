@@ -11,7 +11,7 @@ import cors from "cors";
 
 
 const corsOptions = {
-  origin: 'https://chitchatbe-a6aq.onrender.com',
+  origin: 'http://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204

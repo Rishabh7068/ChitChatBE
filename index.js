@@ -6,6 +6,7 @@ import userRoutes from "./routes/user.routes.js";
 import connectToMonhoDB from "./db/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./sokect/socket.js";
+import path from "path";
 // import cors from "cors";
 
 
@@ -14,7 +15,9 @@ import { app, server } from "./sokect/socket.js";
 
 config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
+
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -28,10 +31,11 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/msg", msgRoutes);
 app.use("/api/users", userRoutes);
+app.use(express.static(path.join(__dirname,"/dist")));
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+// app.get("*",(req, res)=>{
+//   res.sendFile(path.join(__dirname,"","dist","index.html"));
+// });
 
 server.listen(PORT, () => {
   connectToMonhoDB();

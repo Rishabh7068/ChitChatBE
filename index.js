@@ -21,7 +21,12 @@ const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+const corsOptions = {
+  origin: 'https://chit-chat-fe-mu.vercel.app/', // your frontend domain
+  credentials: true, // allow credentials (cookies)
+};
+
+app.use(cors(corsOptions));
 // app.use(cors({
 //   origin: 'http://localhost:3000',
 //   credentials: true
